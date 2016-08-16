@@ -9,8 +9,6 @@ Make sure the have the following dependencies installed globally on your compute
 
 To install a dependency:
 
-npm install -g modulename
-
 E.g.
 
 ```

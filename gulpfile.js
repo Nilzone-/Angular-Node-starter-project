@@ -1,55 +1,55 @@
 var gulp = require('gulp');
-var jshint = require('gulp-jshint');
-var jscs = require('gulp-jscs');
-var nodemon = require('gulp-nodemon');
-var jsFiles = ['*.js', 'public/js/**/*.js'];
+var $ = require('gulp-load-plugins')({
+    lazy: true
+});
+var config = require('./gulp.config')();
 
-gulp.task('style', function() {
-    return gulp.src(jsFiles)
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish', {
+
+gulp.task('style', function () {
+    log('Analyzing source with JSHint and JSCS');
+
+    return gulp.src(config.allJS)
+        .pipe($.jscs())
+        .pipe($.jshint())
+        .pipe($.jshint.reporter('jshint-stylish', {
             verbose: true
         }))
-        .pipe(jscs());
+        .pipe($.jscs());
 });
 
-gulp.task('inject', function() {
+
+gulp.task('inject', function () {
+    log('Injecting the JS and CSS files into index.html');
+
     var wiredep = require('wiredep').stream;
-    var inject = require('gulp-inject');
-    
-    var injectSrc = gulp.src([
-        './public/css/*.css',
-        './public/js/*.js',
-        './public/js/**/*.js'
-    ], { read: false });
-    var injectOptions = {
-        ignorePath: '/public'   
-    };
-    
-    var options = {
-        bowerJson: require('./bower.json'),
-        directory: './public/lib'
-    };
-    
-    return gulp.src('./public/index.html')
+    var options = config.getWiredepDefaultOptions();
+
+    return gulp.src(config.index)
         .pipe(wiredep(options))
-        .pipe(inject(injectSrc, injectOptions))
-        .pipe(gulp.dest('./public'));
+        .pipe($.inject(gulp.src(config.customFiles), {ignorePath: options.ignorePath}))
+        .pipe(gulp.dest(config.client));
 });
 
-gulp.task('serve', ['style', 'inject'], function() {
-    var options = {
-        script: 'server.js',
-        delayTime: 1,
-        env: {
-            PORT: 3000
-        },
-        watch: jsFiles
-    };
-    
-    return nodemon(options)
-        .on('restart', function() {
+
+gulp.task('serve', ['style', 'inject'], function () {
+    var options = config.getServeOptions();
+
+    return $.nodemon(options)
+        .on('restart', function () {
             console.log('Restarting...');
         });
-    
+
 });
+
+
+function log(msg) {
+    if (typeof msg === 'object') {
+        for (var item in msg) {
+            if (msg.hasOwnProperty(item)) {
+                $.util.log($.util.colors.blue(msg[item]));
+            }
+        }
+    } else {
+        $.util.log($.util.colors.blue(msg));
+    }
+}

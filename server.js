@@ -34,5 +34,5 @@ app.get('*', function(req, res){
 
 
 app.listen(port, function(err) {
-    console.log('App is running on port: ' + port);
+    console.log('App is running on localhost: ' + port);
 });
