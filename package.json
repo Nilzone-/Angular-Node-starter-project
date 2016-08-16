@@ -1,8 +1,8 @@
 {
-  "name": "ubesvarte-samtykker",
+  "name": "my-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,7 +18,9 @@
     "gulp-inject": "^4.1.0",
     "gulp-jscs": "^4.0.0",
     "gulp-jshint": "^2.0.1",
+    "gulp-load-plugins": "^1.2.4",
     "gulp-nodemon": "^2.1.0",
+    "gulp-util": "^3.0.7",
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.2.1",
     "method-override": "^2.3.6",

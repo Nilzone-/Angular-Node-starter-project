@@ -1,7 +1,7 @@
 {
-  "name": "ubesvarte-samtykker",
+  "name": "my-app",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "authors": [
     "Thomas Nilsen"
   ],
@@ -18,7 +18,8 @@
     "bootstrap": "^3.3.7",
     "font-awesome": "^4.6.3",
     "angular": "^1.5.8",
-    "angular-route": "^1.5.8"
+    "angular-route": "^1.5.8",
+    "angular-animate": "^1.5.8"
   },
   "overrides": {
     "bootstrap": {
