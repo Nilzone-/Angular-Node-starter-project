@@ -1,4 +1,4 @@
-module.exports = function () {
+module.exports = (function () {
     var client = './public';
 
     var config = {
@@ -48,4 +48,4 @@ module.exports = function () {
     };
 
     return config;
-};
+})();

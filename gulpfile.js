@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')({
     lazy: true
 });
-var config = require('./gulp.config')();
+var config = require('./gulp.config');
 
 
 gulp.task('style', function () {
