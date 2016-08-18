@@ -37,7 +37,7 @@ gulp serve
 ```
 
 
-Now you're app should be running on 
+Now your app should be running on 
 
 
 ```
