@@ -11,6 +11,7 @@
 - Seriate (MSSQL module)
 
 
+
 Make sure the have the following dependencies installed globally on your computer:
 
 - npm
@@ -36,7 +37,7 @@ gulp serve
 ```
 
 
-Now you you're app should be running on 
+Now you're app should be running on 
 
 
 ```
